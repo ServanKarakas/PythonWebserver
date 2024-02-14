@@ -29,6 +29,8 @@ This project involves setting up a Python web server that retrieves data from th
 - Modify the `webserver.py` script to adjust settings such as port number, data retrieval methods, and webpage layout as per your requirements.
 - Modify the `comm.py´ to ajust the COM serial Port.
 - Ensure that the ATmega8 is properly configured to send data to the Python web server.
+## Webserver
+![grafik](https://github.com/ServanKarakas/PythonWebserver/assets/160028333/ad860f25-3d60-46e1-9f75-84043159ae7d)
 
 ## License:
 This project is not licensed.
