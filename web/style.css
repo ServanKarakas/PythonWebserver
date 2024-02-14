@@ -1,0 +1,108 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+#dashboard {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+#curve_chart {
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+}
+
+#noDataImage {
+    display: none;
+    margin-top: 20px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#autoRefreshLabel {
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+}
+
+#autoRefresh {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+#battery_chart {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+}
+
+
+.google-visualization-tooltip {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.google-visualization-tooltip-item {
+    color: #333 !important;
+}
+
+
+.google-visualization-tooltip-item span {
+    color: #666 !important;
+}
+
+#serverStatus {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#statusIcon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ccc; /* Standardfarbe für offline */
+    margin-right: 10px;
+}
+
+#statusText {
+    color: #333;
+    font-weight: bold;
+}

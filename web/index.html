@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Datenausgabe Dashboard</title>
+    <link rel="shortcut icon" href="#">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="rest.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body> 
+    <div id="dashboard"> 
+        <h2>Data:</h2>
+        <hr />
+
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td><b>Current:</b></td>
+                <td><div id="Current"></div></td>
+            </tr>
+            <tr>
+                <td><b>Voltage:</b></td>
+                <td><div id="Voltage"></div></td>
+            </tr>
+        </table>
+
+        <h2>Voltage Curve Viewer:</h2>
+        <div id="curve_chart"></div>
+
+        <h2>Battery Capacity:</h2>
+        <div id="battery_chart"></div>
+
+        <img src="Warnung.png" alt="No Data" id="noDataImage">
+
+        <div id="serverStatus">
+            <span id="statusIcon"></span>
+            <span id="statusText">Server is offline</span>
+        </div>
+
+        <label id="autoRefreshLabel" for="autoRefresh">Auto Refresh:</label>
+        <input type="checkbox" id="autoRefresh" checked>
+
+    </div>
+
+    <script>
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(updateChart);
+
+        function drawChart(response) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('datetime', 'time');
+            data.addColumn('number', 'Voltage');
+
+            response.forEach(function(item) {
+                var time = new Date(item.time);
+                var voltage = parseFloat(item.Voltage);
+                data.addRow([time, voltage]);
+            });
+
+            var options = {
+                title: 'Voltage Over Time',
+                legend: { position: 'bottom' },
+                hAxis: {
+                    format: 'HH:mm',
+                    title: 'Time'
+                },
+                vAxis: {
+                    title: 'Voltage'
+                },
+                colors: ['#3366cc']
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            chart.draw(data, options);
+
+            document.getElementById('noDataImage').style.display = 'none';
+        }
+
+        function showNoDataImage() {
+            document.getElementById('noDataImage').style.display = 'inline';
+        }
+
+        function getData() {
+            $.ajax({
+                url: "http://127.0.0.1:8081/datalog?time=100",
+                type: 'GET',
+                crossDomain: true,
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response);
+                    if (response.length > 0) {
+                        drawChart(response);
+                    } else {
+                        showNoDataImage();
+                    }
+                },
+                error: function(error) {
+                    console.error('Fehler bei der AJAX-Anfrage:', error);
+                }
+            });
+        }
+
+        function drawBatteryChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Capacity', 'Percentage'],
+                ['Used', 60],
+                ['Remaining', 40]
+            ]);
+
+            var options = {
+                title: 'Battery Capacity',
+                pieHole: 0.4,
+                colors: ['#ff9900', '#3366cc']
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('battery_chart'));
+            chart.draw(data, options);
+        }
+
+        function updateChart() {
+            getData();
+            drawBatteryChart();
+
+            var autoRefreshCheckbox = document.getElementById('autoRefresh');
+            if (autoRefreshCheckbox.checked) {
+                setInterval(getData, 300);
+            }
+        }
+    </script>
+</body>
+</html>
