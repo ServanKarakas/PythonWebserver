@@ -2,7 +2,7 @@
 # ATmega8 Data Web Server
 
 ## Description:
-This project involves setting up a Python web server that retrieves data from the ATmega8 microcontroller and displays it on a web page.
+This project involves setting up a Python web server that retrieves data from the ATmega8(or ATmega16) microcontroller and displays it on a web page.
 
 ## Requirements:
 - Python 3.x
@@ -12,6 +12,7 @@ This project involves setting up a Python web server that retrieves data from th
 ## Installation:
 1. Clone or download the project repository to your local machine.
 2. Ensure that Python 3.x is installed on your system.
+3. Ensure that flask and pyserial is installed.
 4. Connect the ATmega8 microcontroller to your computer and ensure it is properly configured to communicate with Python.
 
 ## Usage:
@@ -29,8 +30,5 @@ This project involves setting up a Python web server that retrieves data from th
 - Modify the `comm.py´ to ajust the COM serial Port.
 - Ensure that the ATmega8 is properly configured to send data to the Python web server.
 
-## Support:
-For any issues or inquiries regarding this project, please contact [your email or contact information].
-
 ## License:
-This project is not licensed lol.
+This project is not licensed.
