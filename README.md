@@ -1,6 +1,3 @@
-Certainly! Here's a sample README file for your Python web server project:
-
----
 
 # ATmega8 Data Web Server
 
