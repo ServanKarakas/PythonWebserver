@@ -21,7 +21,9 @@ This project involves setting up a Python web server that retrieves data from th
 1. Navigate to the project directory on your terminal or command prompt.
 2. Run the Python web server script using the following command:
     ```
-    python web_server.py
+    python webserver.py
+    python restserver.py
+    python comm.py
     ```
 3. Open your web browser and navigate to the specified address (usually http://localhost:8000) to view the data retrieved from the ATmega8.
 
